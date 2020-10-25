@@ -8,4 +8,4 @@ nose-cov
 psycopg2
 six
 flask-testing
-gunicorn 
+gunicorn==20.0.4
