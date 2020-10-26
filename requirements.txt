@@ -8,3 +8,5 @@ nose-cov
 psycopg2
 six
 flask-testing
+gunicorn==20.0.4
+python-dotenv

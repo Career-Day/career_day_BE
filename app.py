@@ -1,14 +1,16 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/career_day"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    # port = int(os.environ.get('PORT', 5000))
+    app.run()
 
 class JobsModel(db.Model):
     __tablename__ = 'jobs'
@@ -228,7 +230,7 @@ def db_seed():
     db.session.commit()
     print('Database seeded!')
 
-@app.route('/jobs')
+@app.route('/api/v1/jobs')
 def handle_jobs():
     jobs = JobsModel.query.all()
     results = [
@@ -243,7 +245,7 @@ def handle_jobs():
 
     return {"jobs": results}
 
-@app.route('/job/<job_id>')
+@app.route('/api/v1/jobs/<job_id>')
 def handle_job(job_id):
     job = JobsModel.query.get_or_404(job_id)
 
