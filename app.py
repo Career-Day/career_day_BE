@@ -230,7 +230,7 @@ def db_seed():
     db.session.commit()
     print('Database seeded!')
 
-@app.route('/jobs')
+@app.route('api/v1/jobs')
 def handle_jobs():
     jobs = JobsModel.query.all()
     results = [
@@ -245,7 +245,7 @@ def handle_jobs():
 
     return {"jobs": results}
 
-@app.route('/job/<job_id>')
+@app.route('api/v1/jobs/<job_id>')
 def handle_job(job_id):
     job = JobsModel.query.get_or_404(job_id)
 
