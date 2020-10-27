@@ -1,5 +1,9 @@
 import pytest
+import os
+from dotenv import load_dotenv, find_dotenv
 from app import create_app, db
+
+load_dotenv(find_dotenv())
 
 @pytest.fixture
 def app():
