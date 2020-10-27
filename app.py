@@ -3,12 +3,22 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+db = SQLAlchemy()
 
-if __name__ == '__main__':
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(os.environ['APP_SETTINGS'])
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    migrate = Migrate(app, db)
+    db.init_app(app)
+    # from main import main
+    # app.register_blueprint(main)
+    return app
+
+app = create_app()
+
+if __name__ == '__app__':
     # port = int(os.environ.get('PORT', 5000))
     app.run()
 
