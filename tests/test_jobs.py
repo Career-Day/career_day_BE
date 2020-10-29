@@ -7,7 +7,6 @@ def test_JobsModel(app):
     app.testing = True
     jobs = JobsModel.query.all()
     assert len(jobs) == 15
-    print(jobs[0])
     assert jobs[0].title == 'Graphic Designer'
     assert jobs[0].icon_url == 'https://www.flaticon.com/svg/static/icons/svg/2192/2192721.svg'
     assert jobs[0].image_url == 'https://www.freepik.com/blog/app/uploads/2018/07/PIN-BLOG-1270x720-What-is-the-difference-between-an-illustrator-and-a-graphic-designer-1.jpg'
