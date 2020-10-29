@@ -11,3 +11,4 @@ flask-testing
 gunicorn==20.0.4
 python-dotenv
 pytest
+pytest-cov
