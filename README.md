@@ -21,6 +21,10 @@ Stack: Python3, Flask, Postgres, Heroku
     ```
 6. run tests:
 
+  with coverage:
+  ```
+  $ pytest --cov=app tests/
+  ```
 
 ## Endpoints
 ### Jobs Index Endpoint
