@@ -1,0 +1,26 @@
+language: python
+python:
+- '3.8'
+services:
+- postgresql
+addons:
+  postgresql: '9.6'
+install:
+- pip install -r requirements.txt
+before_script:
+- psql --version
+- psql -c 'create database career_day_test;' -U postgres
+script:
+- pytest
+deploy:
+  provider: heroku
+  api_key:
+    secure: 1/of71WopgZixVtKEupFs5ZqdvhcJ9caYTWG23TprGtuMBYmvlez5NuSOQnD1bCRrQntFixPtp5G0m9+R8thZ79t4J5a9X4bUdO3Zqt5cy3J8eOUI8zx0qs8AwhJva7LuPIYgQ9Ec4r3c6r54qJ/MvPABS3nJTiT6FDQMc13nzJ8uhzfZjLz53hXADcVC8LJGygO8wV0Wmem4/GOpHeo+u+PRnOFcfyJf7e7B+tLn5rxi6hDuA/T7fvkO9XSjHVcA6hUVAA0+5uUnMVb2JrjlxDkV9/iLuWWM2fVp7iiwjTfzLeectDP+br1htjvzcl76j4pAZITVqX8oHm5CcDbxMBafyqYhpeT4Ub28WsbfLiIuaLKN8EXfX3A88l+tZE8MuchS6tDgkS68C9G82NbKMrn1KgskITRx1Fx8p/k4eI6esSZo/iq4exNFJANj1jGa9fYixwN6hOfX/rCge9XjukAHWrwtan4NWN/hxy48Ger4zrMgTjIYrgQp3Sg6aK2NrxJlG7dH2YCHL5w1B3IMw86SjCmsfUvoWN0ySuflC/FWdmVgjS62MaTn/LChNmT7Y3iQjeP402++b08lgc5OZPTCCyUq0Gar13vINsaJxN/zO0CwSm6plSyOxPgJxQe4477v/tBSaT2MQYQWLsy8e8Wqkc7FMb72ofzP2/SXFA=
+  app: careerdaybe
+    on:
+      repo: Career-Day/career_day_BE
+      branch: main
+    skip_cleanup: 'true'
+    run:
+      - pip install -r requirements.txt
+      - python app.py db upgrade
