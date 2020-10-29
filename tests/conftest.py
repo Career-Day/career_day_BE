@@ -1,58 +1,22 @@
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+import pytest
 import os
+from dotenv import load_dotenv, find_dotenv
+from app import create_app, db, JobsModel
 
-db = SQLAlchemy()
+load_dotenv(find_dotenv())
 
-def create_app():
-    app = Flask(__name__)
-    # app.config.from_object(os.environ['APP_SETTINGS'])
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    migrate = Migrate(app, db)
-    db.init_app(app)
-    # from main import main
-    # app.register_blueprint(main)
-    return app
+@pytest.fixture
+def app():
+    app = create_app()
+    app.config.from_object('config.TestingConfig')
+    with app.app_context():
+        db.create_all()
+        db_seed()
+        yield app
+        db.session.close()
+        db.drop_all()
 
-app = create_app()
 
-if __name__ == '__app__':
-    # port = int(os.environ.get('PORT', 5000))
-    app.run()
-
-class JobsModel(db.Model):
-    __tablename__ = 'jobs'
-
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    icon_url = db.Column(db.String(500), nullable=False)
-    image_url = db.Column(db.String(500), nullable=False)
-    video_url = db.Column(db.String(500), nullable=False)
-    min_salary = db.Column(db.String(500), nullable=False)
-    max_salary = db.Column(db.String(500), nullable=False)
-    avg_salary = db.Column(db.String(500), nullable=False)
-    education = db.Column(db.String(500), nullable=False)
-    short_description = db.Column(db.String(1000), nullable=False)
-    long_description = db.Column(db.String(2000), nullable=False)
-
-    def __init__(self, title, icon_url, image_url, video_url, min_salary, max_salary, avg_salary, education, short_description, long_description):
-        self.title = title
-        self.icon_url = icon_url
-        self.image_url = image_url
-        self.video_url = video_url
-        self.min_salary = min_salary
-        self.max_salary = max_salary
-        self.avg_salary = avg_salary
-        self.education = education
-        self.short_description = short_description
-        self.long_description = long_description
-
-    def __repr__(self):
-        return f"Job {self.title}"
-
-@app.cli.command('db_seed')
 def db_seed():
     job1 = JobsModel(
         title="Graphic Designer",
@@ -239,34 +203,3 @@ def db_seed():
         db.session.add(job)
     db.session.commit()
     print('Database seeded!')
-
-@app.route('/api/v1/jobs')
-def handle_jobs():
-    jobs = JobsModel.query.all()
-    results = [
-        {
-        "avg_salary": job.avg_salary,
-        "education": job.education,
-        "icon_url": job.icon_url,
-        "id": job.id,
-        "short_description": job.short_description,
-        "title": job.title
-        } for job in jobs]
-
-    return {"jobs": results}
-
-@app.route('/api/v1/jobs/<job_id>')
-def handle_job(job_id):
-    job = JobsModel.query.get_or_404(job_id)
-
-    response = {
-        "education": job.education,
-        "id": job.id,
-        "image_url": job.image_url,
-        "long_description": job.long_description,
-        "max_salary": job.max_salary,
-        "min_salary": job.min_salary,
-        "title": job.title,
-        "video_url": job.video_url
-    }
-    return {"job": response}
