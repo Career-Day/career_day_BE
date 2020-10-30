@@ -15,12 +15,12 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: 1/of71WopgZixVtKEupFs5ZqdvhcJ9caYTWG23TprGtuMBYmvlez5NuSOQnD1bCRrQntFixPtp5G0m9+R8thZ79t4J5a9X4bUdO3Zqt5cy3J8eOUI8zx0qs8AwhJva7LuPIYgQ9Ec4r3c6r54qJ/MvPABS3nJTiT6FDQMc13nzJ8uhzfZjLz53hXADcVC8LJGygO8wV0Wmem4/GOpHeo+u+PRnOFcfyJf7e7B+tLn5rxi6hDuA/T7fvkO9XSjHVcA6hUVAA0+5uUnMVb2JrjlxDkV9/iLuWWM2fVp7iiwjTfzLeectDP+br1htjvzcl76j4pAZITVqX8oHm5CcDbxMBafyqYhpeT4Ub28WsbfLiIuaLKN8EXfX3A88l+tZE8MuchS6tDgkS68C9G82NbKMrn1KgskITRx1Fx8p/k4eI6esSZo/iq4exNFJANj1jGa9fYixwN6hOfX/rCge9XjukAHWrwtan4NWN/hxy48Ger4zrMgTjIYrgQp3Sg6aK2NrxJlG7dH2YCHL5w1B3IMw86SjCmsfUvoWN0ySuflC/FWdmVgjS62MaTn/LChNmT7Y3iQjeP402++b08lgc5OZPTCCyUq0Gar13vINsaJxN/zO0CwSm6plSyOxPgJxQe4477v/tBSaT2MQYQWLsy8e8Wqkc7FMb72ofzP2/SXFA=
+    secure: YSB22PBMEMzqj0JFOJRImHo9eOy9bn1Wvl30fcJ3pMv8yUfGAYKRq8KFxlbBKz4sMmWZ5ZQ6BxUgBzYriQjTBRGyEO8lyLV56guVSwKOtI08Q8PAb5UEsIZJmS/01lKFtlxJo21f4IPGP1CU4YAUQMlPKqIQ8tPQIIj++QR8OyR5jgMItJO4uDVMB1ryLHAmLqUycSYxIGCw/w0s9tVAdw4+6wUYdJ8bNrUCNAHfNEkegZ/PAM4vVO9pVIyXWB/IG5ExUOoRyhMRRA5GJOIH8GvxN56lQ841AQrZBRQoL2AF1jmjIZiH1QlHjxZL/tu6amaSEZYZWXZIhhyk0z6xYIo+/gepOM4sM0i7BankASO61Dr8pt8wK7QIIH18HdhzB6V8zDonKGyjA/7C93WcxHQPsKZR4ICBSlz0i0neJWaU+cpD6X0tFib3VWLT/P71hQVC0RizW1d7kF5IfOM8Xp23TdwwThsSHY9OjUiW9ICKUdjHiR3QQ7mmEZfXWPxwGhMvVG1tvA5YOlBh7M/g0Q1OChbQ0Z5l4VWURPSiPYP5aEQO1h+KmjhWEGBZ3JPIx4Pnwft5yv5wLNWccLT0lrBVi9at9aSkG91nANtafQV5LQ2bdXOP5zEnNw9jeqxgN9tF+cDM3JgAvnloBdccUHFD56FDi52uGaduRi/9YOg=
   app: careerdaybe
   on:
     repo: Career-Day/career_day_BE
     branch: main
   skip_cleanup: 'true'
   run:
-    - pip install -r requirements.txt
-    - python app.py db upgrade
+  - pip install -r requirements.txt
+  - python app.py db upgrade
