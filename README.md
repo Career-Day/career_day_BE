@@ -48,7 +48,7 @@ Example response for this request: ```GET ‘https://.herokuapp.com/api/v1/jobs�
             "id": 1,
             "short_description": "Graphic designers develop graphics and layouts for product illustrations, company logos, websites and more.",
             "title": "Graphic Designer"
-        },...
+        }, 
     ]
 }
 ```
@@ -72,4 +72,8 @@ Example response for this request: ```GET ‘https://.herokuapp.com/api/v1/jobs�
 ```
 
 ### Team
- <p> <a href="https://github.com/Strompy">Phillip Strom GitHub</a> </br> <a href="https://www.linkedin.com/in/phillipstrom/">LinkedIn</a> </p> <p> <a href="https://github.com/janegreene">Jane Greene GitHub</a> </br> <a href="https://www.linkedin.com/in/jane-greene-mba/">LinkedIn</a> </p> <p> <a href="https://github.com/dtsehl">Dan Sehl GitHub</a> </br> <a href="https://linkedin.com/in/danielsehl">LinkedIn</a> </p> <p> <a></p> 
+[Phillip Strom](https://www.linkedin.com/in/phillipstrom/)
+
+[Jane Greene](https://www.linkedin.com/in/jane-greene-mba/)
+
+[Dan Sehl](https://linkedin.com/in/danielsehl)
