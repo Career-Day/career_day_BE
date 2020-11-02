@@ -54,6 +54,7 @@ class JobsModel(db.Model):
 
 @app.cli.command('db_seed')
 def db_seed():
+    JobsModel.query.delete()
     job1 = JobsModel(
         title="Graphic Designer",
         icon_url="https://www.flaticon.com/svg/static/icons/svg/2192/2192721.svg",
@@ -235,6 +236,7 @@ def db_seed():
         long_description="Pharmacists are healthcare practitioners who check and distribute drugs to doctors for medication that had been prescribed to patients. They advise patients and health care providers on the selection, dosages, interactions, and side effects of medications. They might work in a  hospital or retail store."
     )
     jobs = [job1, job2, job3, job4, job5, job6, job7, job8, job9, job10, job11, job12, job13, job14, job15]
+    db.session.execute("ALTER SEQUENCE jobs_id_seq RESTART WITH 1")
     for job in jobs:
         db.session.add(job)
     db.session.commit()
