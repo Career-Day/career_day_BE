@@ -19,16 +19,23 @@ Stack: Python3, Flask, Postgres, Heroku
     ```
     flask run
     ```
-6. run tests:
-
-  with coverage:
-  ```
-  $ pytest --cov=app tests/
-  ```
+6. run model tests with coverage:
+    ```
+    $ pytest --cov=app tests/
+    ```
+7. run integration tests
+    * First, click the button below to download the Career Day Postman collections to your local client:
+    [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c226a3ff3a643f0456f7)
+    * Next, ensure the app is running with `flask run` in the command line
+    * Finally, to run the tests, in Postman:
+      1. Click `Runner` at the top left
+      2. In the new window that opens up, click on the Career Day collection on the left
+      3. Then click the blue Run Career Day button to run all the tests
+    * To examine or run just one test, in the main Postman app click on the `Tests` tab of one of the requests and click the blue `Send` button
 
 ## Endpoints
 ### Jobs Index Endpoint
-Example response for this request: ```GET ‘https://.herokuapp.com/jobs’```
+Example response for this request: ```GET ‘https://.herokuapp.com/api/v1/jobs’```
 
 ```json
 
@@ -46,7 +53,7 @@ Example response for this request: ```GET ‘https://.herokuapp.com/jobs’```
 }
 ```
 ### Job Show Endpoint
-```GET ‘https://.herokuapp.com/job/(id)’```
+```GET ‘https://.herokuapp.com/api/v1/jobs/(id)’```
 
 
 ```json
@@ -63,3 +70,6 @@ Example response for this request: ```GET ‘https://.herokuapp.com/jobs’```
     }
 }
 ```
+
+### Team
+ <p> <a href="https://github.com/Strompy">Phillip Strom GitHub</a> </br> <a href="https://www.linkedin.com/in/phillipstrom/">LinkedIn</a> </p> <p> <a href="https://github.com/janegreene">Jane Greene GitHub</a> </br> <a href="https://www.linkedin.com/in/jane-greene-mba/">LinkedIn</a> </p> <p> <a href="https://github.com/dtsehl">Dan Sehl GitHub</a> </br> <a href="https://linkedin.com/in/danielsehl">LinkedIn</a> </p> <p> <a></p> 
