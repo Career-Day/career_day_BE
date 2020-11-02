@@ -18,6 +18,7 @@ def app():
 
 
 def db_seed():
+    JobsModel.query.delete()
     job1 = JobsModel(
         title="Graphic Designer",
         icon_url="https://www.flaticon.com/svg/static/icons/svg/2192/2192721.svg",
