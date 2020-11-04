@@ -20,7 +20,7 @@ app = create_app()
 
 if __name__ == '__app__':
     # port = int(os.environ.get('PORT', 5000))
-    app.run()
+    app.run(host="0.0.0.0")
 
 class JobsModel(db.Model):
     __tablename__ = 'jobs'
@@ -241,6 +241,12 @@ def db_seed():
         db.session.add(job)
     db.session.commit()
     print('Database seeded!')
+
+@app.route('/healthz')
+def healthz():
+    return {
+        "status": "ok"
+    }
 
 @app.route('/api/v1/jobs')
 def handle_jobs():
